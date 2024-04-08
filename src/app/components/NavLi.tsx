@@ -1,6 +1,11 @@
 import React from "react";
 
-const NavLi = ({ step, type }) => {
+type NavLiProps = {
+  step: number;
+  type: string;
+};
+
+const NavLi = ({ step, type }: NavLiProps) => {
   return (
     <div className="flex gap-4 items-center mb-6">
       <button className="text-white border rounded-full size-8">{step}</button>
