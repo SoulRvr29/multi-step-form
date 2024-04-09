@@ -21,29 +21,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={ubuntu.className}>
-      <body className="bg-Magnolia flex justify-center items-center min-h-screen">
-        <div className="relative w-full h-fit max-w-[940px] bg-white rounded-xl flex ">
-          <Image
-            className="max-sm:hidden "
-            src="/bg-sidebar-desktop.svg"
-            width={274}
-            height={568}
-            alt="background"
-          />
-          <Image
-            className="max-sm:block hidden"
-            src="/bg-sidebar-mobile.svg"
-            width={375}
-            height={172}
-            alt="background"
-          />
-          <nav className="z-10 absolute top-0 left-0 m-8 ml-6">
-            <NavLi step={1} type={"your info"} />
-            <NavLi step={2} type={"select plan"} />
-            <NavLi step={3} type={"add-ons"} />
-            <NavLi step={4} type={"summary"} />
-          </nav>
-          {children}
+      <body className="bg-Magnolia flex justify-center  items-center min-h-screen">
+        <div className="relative bg-white rounded-xl flex gap-20 p-4 max-w-4xl w-full">
+          <div>
+            <Image
+              className="max-sm:hidden "
+              src="/bg-sidebar-desktop.svg"
+              width={274}
+              height={568}
+              alt="background"
+            />
+            <Image
+              className="max-sm:block hidden"
+              src="/bg-sidebar-mobile.svg"
+              width={375}
+              height={172}
+              alt="background"
+            />
+            <nav className="z-10 absolute top-0 left-0 m-12">
+              <NavLi step={1} href="/" type={"your info"} />
+              <NavLi step={2} href="/plan" type={"select plan"} />
+              <NavLi step={3} href="/addons" type={"add-ons"} />
+              <NavLi step={4} href="/summary" type={"summary"} />
+            </nav>
+          </div>
+          <div className="">{children}</div>
         </div>
       </body>
     </html>
