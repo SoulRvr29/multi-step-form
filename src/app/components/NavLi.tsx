@@ -2,16 +2,22 @@ import React from "react";
 import Link from "next/link";
 
 type NavLiProps = {
+  actual: string;
   step: number;
   type: string;
   href: string;
 };
 
-const NavLi = ({ step, type, href }: NavLiProps) => {
+const NavLi = ({ actual, step, type, href }: NavLiProps) => {
   return (
     <div className="flex gap-4 items-center mb-6">
       <Link href={href}>
-        <button className="text-white border rounded-full size-8">
+        <button
+          className={
+            " border rounded-full size-8 " +
+            (actual === type ? " bg-LightBlue text-MarineBlue" : " text-white")
+          }
+        >
           {step}
         </button>
       </Link>

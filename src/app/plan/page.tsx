@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-
+import MainNav from "../components/MainNav";
 type PlanProps = {
   icon: string;
   name: string;
@@ -13,7 +13,7 @@ type PlanProps = {
 
 export const Plan = ({ icon, name, price }: PlanProps) => {
   return (
-    <div className="flex flex-col justify-between gap-10 border border-LightGray rounded-md p-4  ">
+    <div className="flex flex-col justify-between gap-10 border border-LightGray rounded-md p-4 hover:border-PurplishBlue ">
       <Image src={icon} width={40} height={40} alt={name} />
       <div>
         <h3 className="font-[500] text-MarineBlue">{name}</h3>
@@ -27,6 +27,7 @@ const SelectPlan = () => {
   const [period, setPeriod] = useState(0);
   return (
     <div className="flex flex-col gap-10 h-full justify-between">
+      <MainNav actual="select plan" />
       <div>
         <h1>Select your plan</h1>
         <p>You have the option of monthly or yearly billing.</p>
@@ -65,11 +66,14 @@ const SelectPlan = () => {
         </div>
       </div>
       <div className="w-full flex justify-between items-center ">
-        <Link href="/" className="text-CoolGray">
+        <Link
+          href="/"
+          className="text-CoolGray font-[500] hover:text-MarineBlue"
+        >
           Go Back
         </Link>
         <Link
-          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md"
+          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
           href="/addons"
         >
           Next Step

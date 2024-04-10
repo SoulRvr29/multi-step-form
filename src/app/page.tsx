@@ -1,9 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import MainNav from "./components/MainNav";
 
 const PersonalInfo = () => {
   return (
     <div className="flex flex-col justify-between h-full">
+      <MainNav actual="your info" />
       <div>
         <div>
           <h1>Personal info</h1>
@@ -14,7 +16,7 @@ const PersonalInfo = () => {
             Name
           </label>
           <input
-            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500]"
+            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
             type="text"
             id="name"
             name="name"
@@ -24,7 +26,7 @@ const PersonalInfo = () => {
             Email Address
           </label>
           <input
-            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500]"
+            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
             type="email"
             id="email"
             name="email"
@@ -34,7 +36,7 @@ const PersonalInfo = () => {
             Phone Number
           </label>
           <input
-            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500]"
+            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
             type="text"
             id="phone"
             name="phone"
@@ -44,7 +46,7 @@ const PersonalInfo = () => {
       </div>
       <div className="w-full flex justify-end ">
         <Link
-          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md"
+          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
           href="/plan"
         >
           Next Step

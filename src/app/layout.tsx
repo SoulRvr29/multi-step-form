@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
-import NavLi from "./components/NavLi";
 import { Ubuntu } from "next/font/google";
-import PagesNav from "./components/PagesNav";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -39,16 +37,9 @@ export default function RootLayout({
               height={172}
               alt="background"
             />
-            <nav className="z-10 absolute top-0 left-0 m-12">
-              <NavLi step={1} href="/" type={"your info"} />
-              <NavLi step={2} href="/plan" type={"select plan"} />
-              <NavLi step={3} href="/addons" type={"add-ons"} />
-              <NavLi step={4} href="/summary" type={"summary"} />
-            </nav>
           </div>
           <div className="mt-10 mb-4 w-full flex flex-col justify-between max-w-md">
             {children}
-            {/* <PagesNav /> */}
           </div>
         </div>
       </body>

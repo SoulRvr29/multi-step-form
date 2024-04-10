@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import MainNav from "../components/MainNav";
 
 type AddonsLiProps = {
   name: string;
@@ -9,7 +10,7 @@ type AddonsLiProps = {
 
 const AddonsLi = ({ name, desc, price }: AddonsLiProps) => {
   return (
-    <li className="flex justify-between items-center border border-LightGray rounded-lg p-4 ">
+    <li className="flex justify-between items-center border border-LightGray rounded-lg p-4 hover:border-PurplishBlue cursor-pointer">
       <input
         className="size-5 border-LightGray "
         type="checkbox"
@@ -28,6 +29,7 @@ const AddonsLi = ({ name, desc, price }: AddonsLiProps) => {
 const Addons = () => {
   return (
     <div className="flex flex-col h-full justify-between">
+      <MainNav actual="add-ons" />
       <div>
         <h1>Pick add-ons</h1>
         <p>Add-ons help enhance your gaming experience.</p>
@@ -50,11 +52,14 @@ const Addons = () => {
         />
       </div>
       <div className="w-full flex justify-between items-center ">
-        <Link href="/plan" className="text-CoolGray">
+        <Link
+          href="/plan"
+          className="text-CoolGray font-[500] hover:text-MarineBlue"
+        >
           Go Back
         </Link>
         <Link
-          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md"
+          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
           href="/summary"
         >
           Next Step
