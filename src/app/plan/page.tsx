@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
 type PlanProps = {
   icon: string;
@@ -12,7 +13,7 @@ type PlanProps = {
 
 export const Plan = ({ icon, name, price }: PlanProps) => {
   return (
-    <div className="flex flex-col justify-between gap-10 border border-LightGray rounded-md p-4 pr-12 ">
+    <div className="flex flex-col justify-between gap-10 border border-LightGray rounded-md p-4  ">
       <Image src={icon} width={40} height={40} alt={name} />
       <div>
         <h3 className="font-[500] text-MarineBlue">{name}</h3>
@@ -25,7 +26,7 @@ export const Plan = ({ icon, name, price }: PlanProps) => {
 const SelectPlan = () => {
   const [period, setPeriod] = useState(0);
   return (
-    <div className="flex flex-col gap-10 mt-8">
+    <div className="flex flex-col gap-10 h-full justify-between">
       <div>
         <h1>Select your plan</h1>
         <p>You have the option of monthly or yearly billing.</p>
@@ -62,6 +63,17 @@ const SelectPlan = () => {
         >
           Yearly
         </div>
+      </div>
+      <div className="w-full flex justify-between items-center ">
+        <Link href="/" className="text-CoolGray">
+          Go Back
+        </Link>
+        <Link
+          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md"
+          href="/addons"
+        >
+          Next Step
+        </Link>
       </div>
     </div>
   );

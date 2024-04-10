@@ -3,6 +3,7 @@ import "./globals.css";
 import Image from "next/image";
 import NavLi from "./components/NavLi";
 import { Ubuntu } from "next/font/google";
+import PagesNav from "./components/PagesNav";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -45,7 +46,10 @@ export default function RootLayout({
               <NavLi step={4} href="/summary" type={"summary"} />
             </nav>
           </div>
-          <div className="">{children}</div>
+          <div className="mt-10 mb-4 w-full flex flex-col justify-between max-w-md">
+            {children}
+            {/* <PagesNav /> */}
+          </div>
         </div>
       </body>
     </html>
