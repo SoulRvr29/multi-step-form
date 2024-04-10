@@ -5,13 +5,14 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import MainNav from "../components/MainNav";
+
 type PlanProps = {
-  icon: string;
+  icon: any;
   name: string;
   price: string;
 };
 
-export const Plan = ({ icon, name, price }: PlanProps) => {
+const Plan = ({ icon, name, price }: PlanProps) => {
   return (
     <div className="flex flex-col justify-between gap-10 border border-LightGray rounded-md p-4 hover:border-PurplishBlue ">
       <Image src={icon} width={40} height={40} alt={name} />
