@@ -1,14 +1,16 @@
 import React from "react";
+import MainNav from "../components/MainNav";
 
 const Complete = () => {
   return (
-    <div className="grid place-content-center h-full text-center gap-4">
+    <div className="grid place-content-center h-full  gap-4 max-md:my-10">
+      <MainNav actual="summary" />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="80"
         height="80"
         viewBox="0 0 80 80"
-        className="mx-auto"
+        className="mx-auto max-md:size-14"
       >
         <g fill="none">
           <circle cx="40" cy="40" r="40" fill="#F9818E" />
@@ -22,12 +24,14 @@ const Complete = () => {
           />
         </g>
       </svg>
-      <h1>Thank you!</h1>
-      <p>
-        Thanks for confirming your subscription! We hope you have fun using our
-        platform. If you ever need support, please feel free to email us at
-        support@loremgaming.com.
-      </p>
+      <div className="text-center">
+        <h1 className="mb-4 max-md:text-2xl">Thank you!</h1>
+        <p>
+          Thanks for confirming your subscription! We hope you have fun using
+          our platform. If you ever need support, please feel free to email us
+          at support@loremgaming.com.
+        </p>
+      </div>
     </div>
   );
 };

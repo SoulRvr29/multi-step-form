@@ -20,26 +20,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={ubuntu.className}>
-      <body className="bg-Magnolia flex justify-center  items-center min-h-screen">
-        <div className="relative bg-white rounded-xl flex gap-20 p-4 max-w-4xl w-full">
-          <div>
-            <Image
-              className="max-sm:hidden "
-              src="/bg-sidebar-desktop.svg"
-              width={274}
-              height={568}
-              alt="background"
-            />
-            <Image
-              className="max-sm:block hidden"
-              src="/bg-sidebar-mobile.svg"
-              width={375}
-              height={172}
-              alt="background"
-            />
-          </div>
-          <div className="mt-10 mb-4 w-full flex flex-col justify-between max-w-md">
-            {children}
+      <body className="relative bg-Magnolia flex max-md:flex-col justify-center items-center min-h-screen  max-md:justify-start">
+        <Image
+          className="max-md:block hidden mx-auto max-[420px]:absolute max-[420px]:top-0  "
+          src="/bg-sidebar-mobile.svg"
+          width={375}
+          height={172}
+          alt="background"
+        />
+        <div className="p-4 relative ">
+          <div className="relative bg-white rounded-xl grid grid-cols-[300px_500px] max-md:grid-cols-1 p-4 max-w-4xl w-full max-md:max-w-lg  border shadow-lg max-md:-translate-y-16 max-md:p-6 max-md:">
+            <div>
+              <Image
+                className="max-md:hidden"
+                src="/bg-sidebar-desktop.svg"
+                width={274}
+                height={568}
+                alt="background"
+              />
+            </div>
+            <div className="mt-10 max-md:m-2 mb-4 w-full flex flex-col mx-auto justify-between max-w-md ">
+              {children}
+            </div>
           </div>
         </div>
       </body>

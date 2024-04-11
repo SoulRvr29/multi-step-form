@@ -6,9 +6,9 @@ const PersonalInfo = () => {
   return (
     <div className="flex flex-col justify-between h-full">
       <MainNav actual="your info" />
-      <div>
+      <div className="flex flex-col gap-6">
         <div>
-          <h1>Personal info</h1>
+          <h1 className="max-md:text-2xl">Personal info</h1>
           <p>Please provide your name, email address, and phone number.</p>
         </div>
         <form>
@@ -16,7 +16,7 @@ const PersonalInfo = () => {
             Name
           </label>
           <input
-            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
+            className="block mb-6 border border-LightGray rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
             type="text"
             id="name"
             name="name"
@@ -26,7 +26,7 @@ const PersonalInfo = () => {
             Email Address
           </label>
           <input
-            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
+            className="block mb-6 border border-LightGray rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
             type="email"
             id="email"
             name="email"
@@ -36,7 +36,7 @@ const PersonalInfo = () => {
             Phone Number
           </label>
           <input
-            className="block mb-6 border border-LightGray rounded-md px-5 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
+            className="block mb-6 border border-LightGray rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
             type="text"
             id="phone"
             name="phone"
