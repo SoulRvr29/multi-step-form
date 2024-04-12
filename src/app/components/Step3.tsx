@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "next/link";
-import MainNav from "../components/MainNav";
+import MainNav from "./MainNav";
+import { useFormContext } from "react-hook-form";
 
 type AddonsLiProps = {
   name: string;
@@ -9,9 +9,11 @@ type AddonsLiProps = {
 };
 
 const AddonsLi = ({ name, desc, price }: AddonsLiProps) => {
+  const { register } = useFormContext();
   return (
     <li className="flex justify-between items-center border border-LightGray rounded-lg p-4 hover:border-PurplishBlue cursor-pointer max-md:gap-4">
       <input
+        {...register("addons")}
         className="size-5 border-LightGray accent-PurplishBlue  "
         type="checkbox"
         name={name}
@@ -52,20 +54,6 @@ const Addons = () => {
             price="+$20/yr"
           />
         </div>
-      </div>
-      <div className="w-full flex justify-between items-center max-md:mt-8">
-        <Link
-          href="/plan"
-          className="text-CoolGray font-[500] hover:text-MarineBlue"
-        >
-          Go Back
-        </Link>
-        <Link
-          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
-          href="/summary"
-        >
-          Next Step
-        </Link>
       </div>
     </div>
   );
