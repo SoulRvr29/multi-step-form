@@ -13,7 +13,7 @@ const AddonsLi = ({ name, desc, price }: AddonsLiProps) => {
   return (
     <li className="flex justify-between items-center border border-LightGray rounded-lg p-4 hover:border-PurplishBlue cursor-pointer max-md:gap-4">
       <input
-        {...register("addons")}
+        {...register(name)}
         className="size-5 border-LightGray accent-PurplishBlue  "
         type="checkbox"
         name={name}

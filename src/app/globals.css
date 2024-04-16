@@ -25,7 +25,8 @@ p {
 }
 
 h2,
-label {
+label,
+.error {
   font-size: 0.9rem;
 }
 

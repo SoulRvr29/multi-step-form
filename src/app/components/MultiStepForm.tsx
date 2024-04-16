@@ -9,14 +9,17 @@ import { useRouter } from "next/navigation";
 
 export default function MultiStepForm() {
   const methods = useForm();
+  const {
+    formState: { errors },
+  } = useForm();
   const [step, setStep] = useState(1);
   const router = useRouter();
 
   const onSubmit = (data: object) => {
-    console.log(data); // Submit your data to the backend or handle it as needed
-    router.push("/complete"); // Redirect to confirmation page
+    // console.log(data);
+    router.push("/complete");
   };
-
+  const [plan, setPlan] = useState("arcade");
   return (
     <FormProvider {...methods}>
       <form
@@ -24,9 +27,17 @@ export default function MultiStepForm() {
         onSubmit={methods.handleSubmit(onSubmit)}
       >
         {step === 1 && <Step1 />}
-        {step === 2 && <Step2 />}
+        {step === 2 && (
+          <Step2
+            plan={plan}
+            setPlan={setPlan}
+            icon={undefined}
+            name={""}
+            price={""}
+          />
+        )}
         {step === 3 && <Step3 />}
-        {step === 4 && <Step4 />}
+        {step === 4 && <Step4 plan={plan} values={methods.getValues()} />}
         <div
           className={
             "w-full flex items-center " +
@@ -46,7 +57,11 @@ export default function MultiStepForm() {
             <button
               className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
               type="button"
-              onClick={() => setStep(step + 1)}
+              // type="submit"
+              onClick={() => {
+                setStep(step + 1);
+                // console.log(methods);
+              }}
             >
               Next Step
             </button>

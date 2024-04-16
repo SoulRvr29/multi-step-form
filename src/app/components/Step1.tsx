@@ -3,7 +3,12 @@ import MainNav from "./MainNav";
 import { useFormContext } from "react-hook-form";
 
 const PersonalInfo = () => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  console.log(errors.name?.message?.toString());
   return (
     <div className="flex flex-col justify-between h-full">
       <MainNav actual="your info" />
@@ -14,34 +19,71 @@ const PersonalInfo = () => {
         </div>
 
         <div>
-          <label className="block text-MarineBlue" htmlFor="name">
-            Name
-          </label>
+          <div className="flex justify-between items-center">
+            <label className="block text-MarineBlue" htmlFor="name">
+              Name
+            </label>
+            <p className="error text-StrawberryRed">
+              {errors.name?.message?.toString()}
+            </p>
+          </div>
           <input
-            {...register("name")}
-            className="block mb-6 border border-LightGray rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
+            {...register("name", { required: "This field is required" })}
+            className={
+              "block mb-6 border rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue" +
+              (errors.name
+                ? " outline-StrawberryRed border-StrawberryRed"
+                : " border-LightGray")
+            }
             type="text"
             id="name"
             name="name"
             placeholder="e.g. Stephen King"
           />
-          <label className="block text-MarineBlue" htmlFor="email">
-            Email Address
-          </label>
+          <div className="flex justify-between items-center">
+            <label className="block text-MarineBlue" htmlFor="email">
+              Email Address
+            </label>
+            <p className="error text-StrawberryRed">
+              {errors.email?.message?.toString()}
+            </p>
+          </div>
           <input
-            {...register("email")}
-            className="block mb-6 border border-LightGray rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
+            {...register("email", {
+              required: "This field is required",
+              pattern: /^\S+@\S+$/i,
+            })}
+            className={
+              "block mb-6 border rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue" +
+              (errors.email
+                ? " outline-StrawberryRed border-StrawberryRed"
+                : " border-LightGray")
+            }
             type="email"
             id="email"
             name="email"
             placeholder="e.g. stephenking@lorem.com"
           />
-          <label className="block text-MarineBlue" htmlFor="phone">
-            Phone Number
-          </label>
+          <div className="flex justify-between items-center">
+            <label className="block text-MarineBlue" htmlFor="phone">
+              Phone Number
+            </label>
+            <p className="error text-StrawberryRed">
+              {errors.phone?.message?.toString()}
+            </p>
+          </div>
           <input
-            {...register("phone")}
-            className="block mb-6 border border-LightGray rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue"
+            {...register("phone", {
+              required: "This field is required",
+              minLength: { value: 10, message: "Must be 10 digits long" },
+              maxLength: { value: 10, message: "Must be 10 digits long" },
+            })}
+            className={
+              "block mb-6 border rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue" +
+              (errors.phone
+                ? " outline-StrawberryRed border-StrawberryRed"
+                : " border-LightGray")
+            }
             type="text"
             id="phone"
             name="phone"
