@@ -2,7 +2,7 @@ import React from "react";
 import MainNav from "./MainNav";
 import { useFormContext } from "react-hook-form";
 
-const Summary = ({ plan, values }: any) => {
+const Summary = ({ plan, values, period, setPeriod, addons }: any) => {
   const { register } = useFormContext();
   console.log(values);
   return (
@@ -14,25 +14,31 @@ const Summary = ({ plan, values }: any) => {
         <div className="bg-Alabaster rounded-lg p-4 mt-8">
           <div className="flex justify-between">
             <p className="text-MarineBlue font-bold capitalize">
-              {plan} ({values.period === "0" ? "monthly" : "yearly"})
+              {plan} ({period === false ? "monthly" : "yearly"})
             </p>
             <div className="text-MarineBlue font-bold">$9/mo</div>
           </div>
-          <button className="underline text-CoolGray">Change</button>
+          <button
+            type="button"
+            onClick={() => setPeriod(!period)}
+            className="underline text-CoolGray"
+          >
+            Change
+          </button>
           <hr className="my-4" />
-          {values["Online service"] && (
+          {addons["Online service"] && (
             <div className="flex justify-between mb-4 text-CoolGray">
               <div>Online service</div>
               <div className="text-MarineBlue">+$1/mo</div>
             </div>
           )}
-          {values["Larger storage"] && (
+          {addons["Larger storage"] && (
             <div className="flex justify-between mb-4 text-CoolGray">
               <div>Larger storage</div>
               <div className="text-MarineBlue">+$2/mo</div>
             </div>
           )}
-          {values["Customizable profile"] && (
+          {addons["Customizable profile"] && (
             <div className="flex justify-between text-CoolGray">
               <div>Customizable profile</div>
               <div className="text-MarineBlue">+$2/mo</div>

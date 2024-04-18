@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import MainNav from "./MainNav";
 import { useFormContext } from "react-hook-form";
@@ -6,29 +8,50 @@ type AddonsLiProps = {
   name: string;
   desc: string;
   price: string;
+  setAddons: any;
+  addons: object;
 };
 
-const AddonsLi = ({ name, desc, price }: AddonsLiProps) => {
-  const { register } = useFormContext();
+const AddonsLi = ({ name, desc, price, addons, setAddons }: AddonsLiProps) => {
   return (
-    <li className="flex justify-between items-center border border-LightGray rounded-lg p-4 hover:border-PurplishBlue cursor-pointer max-md:gap-4">
+    <li
+      className={
+        "flex gap-4 justify-between items-center border rounded-lg p-4 hover:border-PurplishBlue cursor-pointer max-md:gap-4 " +
+        (addons[name as keyof typeof addons]
+          ? "bg-Alabaster border-PurplishBlue"
+          : "")
+      }
+    >
       <input
-        {...register(name)}
-        className="size-5 border-LightGray accent-PurplishBlue  "
+        className="size-5 border-LightGray accent-PurplishBlue  cursor-pointer"
         type="checkbox"
         name={name}
         id={name}
+        onChange={(e) => {
+          setAddons({ ...addons, [name]: e.target.checked });
+        }}
       />
-      <div>
-        <h3 className="text-MarineBlue font-bold">{name}</h3>{" "}
-        <p className="max-md:text-xs">{desc}</p>
+      <div className="flex justify-between w-full">
+        <div className="justify-self-start">
+          <h3 className="text-MarineBlue font-bold">{name}</h3>{" "}
+          <p className="max-md:text-xs">{desc}</p>
+        </div>
+        <div className="text-PurplishBlue ">{price}</div>
       </div>
-      <div className="text-PurplishBlue ">{price}</div>
     </li>
   );
 };
 
-const Addons = () => {
+const Addons = ({
+  period,
+  addons,
+  setAddons,
+}: {
+  period: string;
+
+  addons: object;
+  setAddons: any;
+}) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="add-ons" />
@@ -39,19 +62,25 @@ const Addons = () => {
         </div>
         <div className="flex flex-col gap-4 font-[500]">
           <AddonsLi
+            addons={addons}
+            setAddons={setAddons}
             name="Online service"
             desc="Access to multiplayer games"
-            price="+$10/yr"
+            price={period ? "+$10/yr" : "+$1/mo"}
           />
           <AddonsLi
+            addons={addons}
+            setAddons={setAddons}
             name="Larger storage"
             desc="Extra 1TB of cloud save"
-            price="+$20/yr"
+            price={period ? "+$20/yr" : "+$2/mo"}
           />
           <AddonsLi
+            addons={addons}
+            setAddons={setAddons}
             name="Customizable profile"
             desc="Custom theme on your profile"
-            price="+$20/yr"
+            price={period ? "+$20/yr" : "+$2/mo"}
           />
         </div>
       </div>

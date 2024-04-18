@@ -20,6 +20,12 @@ export default function MultiStepForm() {
     router.push("/complete");
   };
   const [plan, setPlan] = useState("arcade");
+  const [period, setPeriod] = useState("0");
+  const [addons, setAddons] = useState({
+    "Online service": false,
+    "Larger storage": false,
+    "Customizable profile": false,
+  });
   return (
     <FormProvider {...methods}>
       <form
@@ -34,10 +40,22 @@ export default function MultiStepForm() {
             icon={undefined}
             name={""}
             price={""}
+            period={period}
+            setPeriod={setPeriod}
           />
         )}
-        {step === 3 && <Step3 />}
-        {step === 4 && <Step4 plan={plan} values={methods.getValues()} />}
+        {step === 3 && (
+          <Step3 period={period} addons={addons} setAddons={setAddons} />
+        )}
+        {step === 4 && (
+          <Step4
+            addons={addons}
+            period={period}
+            setPeriod={setPeriod}
+            plan={plan}
+            values={methods.getValues()}
+          />
+        )}
         <div
           className={
             "w-full flex items-center " +
