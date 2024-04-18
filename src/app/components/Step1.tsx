@@ -81,8 +81,8 @@ const PersonalInfo = ({ register, errors }: any) => {
                 message: "This field is required",
               },
               pattern: {
-                value: /^\d{10}$/,
-                message: "Must be 10 digits",
+                value: /^\d{9}$/,
+                message: "Must be 9 digits",
               },
             })}
             className={

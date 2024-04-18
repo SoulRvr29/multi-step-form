@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useForm, SubmitHandler, Form } from "react-hook-form";
+import { useForm, SubmitHandler, Form, Controller } from "react-hook-form";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
@@ -14,6 +14,7 @@ const MultiStepForm = () => {
     handleSubmit,
     formState: { errors },
     trigger,
+    control,
     watch,
   } = useForm({
     mode: "onChange",
@@ -26,8 +27,6 @@ const MultiStepForm = () => {
 
   const [step, setStep] = useState(1);
   const router = useRouter();
-  const [plan, setPlan] = useState("arcade");
-  const [period, setPeriod] = useState("0");
   const [addons, setAddons] = useState({
     "Online service": false,
     "Larger storage": false,
@@ -37,28 +36,10 @@ const MultiStepForm = () => {
     <form className="h-full flex flex-col" onSubmit={handleSubmit(onSubmit)}>
       {step === 1 && <Step1 register={register} errors={errors} />}
       {step === 2 && (
-        <Step2
-          register={register}
-          plan={plan}
-          setPlan={setPlan}
-          icon={undefined}
-          name={""}
-          price={""}
-          period={period}
-          setPeriod={setPeriod}
-        />
+        <Step2 control={control} register={register} watch={watch} />
       )}
-      {step === 3 && (
-        <Step3 period={period} addons={addons} setAddons={setAddons} />
-      )}
-      {step === 4 && (
-        <Step4
-          addons={addons}
-          period={period}
-          setPeriod={setPeriod}
-          plan={plan}
-        />
-      )}
+      {step === 3 && <Step3 addons={addons} setAddons={setAddons} />}
+      {step === 4 && <Step4 addons={addons} />}
       <div
         className={
           "w-full flex items-center " +
@@ -82,7 +63,7 @@ const MultiStepForm = () => {
               trigger().then((isValid: any) => {
                 if (isValid) {
                   setStep(step + 1);
-                  console.log(watch);
+                  console.log(watch());
                 }
               });
             }}

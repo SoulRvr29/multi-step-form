@@ -40,16 +40,7 @@ const AddonsLi = ({ name, desc, price, addons, setAddons }: AddonsLiProps) => {
   );
 };
 
-const Addons = ({
-  period,
-  addons,
-  setAddons,
-}: {
-  period: string;
-
-  addons: object;
-  setAddons: any;
-}) => {
+const Addons = ({ addons, setAddons }: { addons: object; setAddons: any }) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="add-ons" />
@@ -64,21 +55,21 @@ const Addons = ({
             setAddons={setAddons}
             name="Online service"
             desc="Access to multiplayer games"
-            price={period ? "+$10/yr" : "+$1/mo"}
+            price="+$1/mo"
           />
           <AddonsLi
             addons={addons}
             setAddons={setAddons}
             name="Larger storage"
             desc="Extra 1TB of cloud save"
-            price={period ? "+$20/yr" : "+$2/mo"}
+            price="+$2/mo"
           />
           <AddonsLi
             addons={addons}
             setAddons={setAddons}
             name="Customizable profile"
             desc="Custom theme on your profile"
-            price={period ? "+$20/yr" : "+$2/mo"}
+            price="+$2/mo"
           />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import MainNav from "./MainNav";
 
-const Summary = ({ plan, values, period, setPeriod, addons }: any) => {
+const Summary = ({ plan, addons }: any) => {
   // console.log(values);
   return (
     <div className="flex flex-col h-full justify-between">
@@ -12,13 +12,13 @@ const Summary = ({ plan, values, period, setPeriod, addons }: any) => {
         <div className="bg-Alabaster rounded-lg p-4 mt-8">
           <div className="flex justify-between">
             <p className="text-MarineBlue font-bold capitalize">
-              {plan} ({period === false ? "monthly" : "yearly"})
+              {/* {plan} ({period === false ? "monthly" : "yearly"}) */}
             </p>
             <div className="text-MarineBlue font-bold">$9/mo</div>
           </div>
           <button
             type="button"
-            onClick={() => setPeriod(!period)}
+            // onClick={() => setPeriod(!period)}
             className="underline text-CoolGray"
           >
             Change
