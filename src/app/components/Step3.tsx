@@ -1,8 +1,6 @@
 "use client";
-
 import React from "react";
 import MainNav from "./MainNav";
-import { useFormContext } from "react-hook-form";
 
 type AddonsLiProps = {
   name: string;

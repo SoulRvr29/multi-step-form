@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import MainNav from "./MainNav";
-import { useFormContext } from "react-hook-form";
 
 type PlanProps = {
   icon: any;
@@ -13,6 +12,7 @@ type PlanProps = {
   plan: any;
   period?: string;
   setPeriod?: any;
+  register?: any;
 };
 
 const Plan = ({ icon, name, price, plan, setPlan, period }: PlanProps) => {
@@ -34,9 +34,13 @@ const Plan = ({ icon, name, price, plan, setPlan, period }: PlanProps) => {
   );
 };
 
-const SelectPlan = ({ setPlan, plan, period, setPeriod }: PlanProps) => {
-  const { register } = useFormContext();
-
+const SelectPlan = ({
+  setPlan,
+  plan,
+  period,
+  setPeriod,
+  register,
+}: PlanProps) => {
   return (
     <div className="flex flex-col gap-4 h-full justify-between">
       <MainNav actual="select plan" />

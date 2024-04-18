@@ -1,14 +1,7 @@
 import React from "react";
 import MainNav from "./MainNav";
-import { useFormContext } from "react-hook-form";
 
-const PersonalInfo = () => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-
-  console.log(errors.name?.message?.toString());
+const PersonalInfo = ({ register, errors }: any) => {
   return (
     <div className="flex flex-col justify-between h-full">
       <MainNav actual="your info" />
@@ -28,7 +21,13 @@ const PersonalInfo = () => {
             </p>
           </div>
           <input
-            {...register("name", { required: "This field is required" })}
+            {...register("name", {
+              required: { value: true, message: "This field is required" },
+              minLength: {
+                value: 3,
+                message: "At least 3 characters",
+              },
+            })}
             className={
               "block mb-6 border rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue" +
               (errors.name
@@ -50,8 +49,11 @@ const PersonalInfo = () => {
           </div>
           <input
             {...register("email", {
-              required: "This field is required",
-              pattern: /^\S+@\S+$/i,
+              required: { value: true, message: "This field is required" },
+              pattern: {
+                value: /^[\w._]+@[\w]+\.[\w]{2,}$/i,
+                message: "Enter valid email",
+              },
             })}
             className={
               "block mb-6 border rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue" +
@@ -74,9 +76,14 @@ const PersonalInfo = () => {
           </div>
           <input
             {...register("phone", {
-              required: "This field is required",
-              minLength: { value: 10, message: "Must be 10 digits long" },
-              maxLength: { value: 10, message: "Must be 10 digits long" },
+              required: {
+                value: true,
+                message: "This field is required",
+              },
+              pattern: {
+                value: /^\d{10}$/,
+                message: "Must be 10 digits",
+              },
             })}
             className={
               "block mb-6 border rounded-md px-4 py-2 w-full font-[500] cursor-pointer hover:border-PurplishBlue" +
@@ -87,7 +94,7 @@ const PersonalInfo = () => {
             type="text"
             id="phone"
             name="phone"
-            placeholder="e.g. +1 234 567 890"
+            placeholder="e.g. 1 234 567 890"
           />
         </div>
       </div>

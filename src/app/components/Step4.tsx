@@ -1,10 +1,8 @@
 import React from "react";
 import MainNav from "./MainNav";
-import { useFormContext } from "react-hook-form";
 
 const Summary = ({ plan, values, period, setPeriod, addons }: any) => {
-  const { register } = useFormContext();
-  console.log(values);
+  // console.log(values);
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="summary" />
