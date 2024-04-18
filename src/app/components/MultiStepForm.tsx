@@ -13,9 +13,11 @@ const MultiStepForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onChange" });
-
-  const hasErrors = Object.keys(errors).length > 0;
+    trigger,
+    watch,
+  } = useForm({
+    mode: "onChange",
+  });
 
   const onSubmit = (data: object) => {
     console.log(data);
@@ -76,9 +78,13 @@ const MultiStepForm = () => {
           <button
             className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
             type="button"
-            disabled={hasErrors}
             onClick={() => {
-              setStep(step + 1);
+              trigger().then((isValid: any) => {
+                if (isValid) {
+                  setStep(step + 1);
+                  console.log(watch);
+                }
+              });
             }}
           >
             Next Step
@@ -92,13 +98,6 @@ const MultiStepForm = () => {
             Confirm
           </button>
         )}
-        {/* <button
-          className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
-          type="submit"
-          disabled={hasErrors}
-        >
-          Confirm
-        </button> */}
       </div>
     </form>
   );
