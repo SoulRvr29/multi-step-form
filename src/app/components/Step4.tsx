@@ -1,8 +1,12 @@
 import React from "react";
 import MainNav from "./MainNav";
 
-const Summary = ({ plan, addons }: any) => {
-  // console.log(values);
+type SummaryProps = {
+  getValues: any;
+  setValue: any;
+};
+
+const Summary = ({ getValues, setValue }: SummaryProps) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="summary" />
@@ -12,31 +16,44 @@ const Summary = ({ plan, addons }: any) => {
         <div className="bg-Alabaster rounded-lg p-4 mt-8">
           <div className="flex justify-between">
             <p className="text-MarineBlue font-bold capitalize">
-              {/* {plan} ({period === false ? "monthly" : "yearly"}) */}
+              {getValues().plan} ({getValues().period})
             </p>
-            <div className="text-MarineBlue font-bold">$9/mo</div>
+            <div className="text-MarineBlue font-bold">
+              {getValues().plan === "Arcade" && getValues().period === "monthly"
+                ? "$9/mo"
+                : getValues().plan === "Arcade" &&
+                  getValues().period === "yearly"
+                ? "$90/mo"
+                : getValues().plan === "Advanced"
+                ? "$12/mo"
+                : "$15/mo"}
+            </div>
           </div>
           <button
             type="button"
-            // onClick={() => setPeriod(!period)}
+            onClick={() => {
+              getValues().period === "monthly"
+                ? setValue("period", "yearly")
+                : setValue("period", "monthly");
+            }}
             className="underline text-CoolGray"
           >
             Change
           </button>
           <hr className="my-4" />
-          {addons["Online service"] && (
+          {getValues()["Online service"] && (
             <div className="flex justify-between mb-4 text-CoolGray">
               <div>Online service</div>
               <div className="text-MarineBlue">+$1/mo</div>
             </div>
           )}
-          {addons["Larger storage"] && (
+          {getValues()["Larger storage"] && (
             <div className="flex justify-between mb-4 text-CoolGray">
               <div>Larger storage</div>
               <div className="text-MarineBlue">+$2/mo</div>
             </div>
           )}
-          {addons["Customizable profile"] && (
+          {getValues()["Customizable profile"] && (
             <div className="flex justify-between text-CoolGray">
               <div>Customizable profile</div>
               <div className="text-MarineBlue">+$2/mo</div>

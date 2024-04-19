@@ -16,6 +16,8 @@ const MultiStepForm = () => {
     trigger,
     control,
     watch,
+    getValues,
+    setValue,
   } = useForm({
     mode: "onChange",
   });
@@ -25,21 +27,22 @@ const MultiStepForm = () => {
     router.push("/complete");
   };
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const router = useRouter();
-  const [addons, setAddons] = useState({
-    "Online service": false,
-    "Larger storage": false,
-    "Customizable profile": false,
-  });
+
   return (
     <form className="h-full flex flex-col" onSubmit={handleSubmit(onSubmit)}>
       {step === 1 && <Step1 register={register} errors={errors} />}
       {step === 2 && (
-        <Step2 control={control} register={register} watch={watch} />
+        <Step2
+          control={control}
+          register={register}
+          watch={watch}
+          getValues={getValues}
+        />
       )}
-      {step === 3 && <Step3 addons={addons} setAddons={setAddons} />}
-      {step === 4 && <Step4 addons={addons} />}
+      {step === 3 && <Step3 register={register} getValues={getValues} />}
+      {step === 4 && <Step4 getValues={getValues} setValue={setValue} />}
       <div
         className={
           "w-full flex items-center " +
@@ -63,7 +66,7 @@ const MultiStepForm = () => {
               trigger().then((isValid: any) => {
                 if (isValid) {
                   setStep(step + 1);
-                  console.log(watch());
+                  console.log(getValues());
                 }
               });
             }}

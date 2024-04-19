@@ -6,28 +6,34 @@ type AddonsLiProps = {
   name: string;
   desc: string;
   price: string;
-  setAddons: any;
-  addons: object;
+  register: any;
+  getValues: any;
+};
+type AddonsProps = {
+  register: any;
+  getValues: any;
 };
 
-const AddonsLi = ({ name, desc, price, addons, setAddons }: AddonsLiProps) => {
+const AddonsLi = ({
+  name,
+  desc,
+  price,
+  register,
+  getValues,
+}: AddonsLiProps) => {
   return (
     <li
       className={
         "flex gap-4 justify-between items-center border rounded-lg p-4 hover:border-PurplishBlue cursor-pointer max-md:gap-4 " +
-        (addons[name as keyof typeof addons]
-          ? "bg-Alabaster border-PurplishBlue"
-          : "")
+        (getValues()[name] ? "bg-Alabaster border-PurplishBlue" : "")
       }
     >
       <input
+        {...register(name)}
         className="size-5 border-LightGray accent-PurplishBlue  cursor-pointer"
         type="checkbox"
         name={name}
         id={name}
-        onChange={(e) => {
-          setAddons({ ...addons, [name]: e.target.checked });
-        }}
       />
       <div className="flex justify-between w-full">
         <div className="justify-self-start">
@@ -40,7 +46,7 @@ const AddonsLi = ({ name, desc, price, addons, setAddons }: AddonsLiProps) => {
   );
 };
 
-const Addons = ({ addons, setAddons }: { addons: object; setAddons: any }) => {
+const Addons = ({ register, getValues }: AddonsProps) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="add-ons" />
@@ -51,25 +57,25 @@ const Addons = ({ addons, setAddons }: { addons: object; setAddons: any }) => {
         </div>
         <div className="flex flex-col gap-4 font-[500]">
           <AddonsLi
-            addons={addons}
-            setAddons={setAddons}
+            getValues={getValues}
+            register={register}
             name="Online service"
             desc="Access to multiplayer games"
-            price="+$1/mo"
+            price={getValues().period === "monthly" ? "+$1/mo" : "+$10/mo"}
           />
           <AddonsLi
-            addons={addons}
-            setAddons={setAddons}
+            getValues={getValues}
+            register={register}
             name="Larger storage"
             desc="Extra 1TB of cloud save"
-            price="+$2/mo"
+            price={getValues().period === "monthly" ? "+$2/mo" : "+$20/mo"}
           />
           <AddonsLi
-            addons={addons}
-            setAddons={setAddons}
+            getValues={getValues}
+            register={register}
             name="Customizable profile"
             desc="Custom theme on your profile"
-            price="+$2/mo"
+            price={getValues().period === "monthly" ? "+$2/mo" : "+$20/mo"}
           />
         </div>
       </div>

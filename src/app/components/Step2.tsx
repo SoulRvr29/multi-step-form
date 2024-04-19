@@ -6,9 +6,9 @@ import { Controller } from "react-hook-form";
 
 type SelectPlanProps = {
   period?: string;
-  setPeriod?: any;
-  register: any;
   control: any;
+  register: any;
+  getValues: any;
   watch: any;
 };
 type PlanProps = {
@@ -19,10 +19,10 @@ type PlanProps = {
   field: any;
   register: any;
   control: any;
-  watch: any;
+  getValues: any;
 };
 
-const Plan = ({ icon, name, price, field, watch }: PlanProps) => {
+const Plan = ({ icon, name, price, field, getValues }: PlanProps) => {
   return (
     <div
       onClick={() => {
@@ -30,8 +30,8 @@ const Plan = ({ icon, name, price, field, watch }: PlanProps) => {
       }}
       className={
         "flex flex-col max-md:flex-row max-md:justify-start max-md:gap-4 justify-between gap-10  border  rounded-md p-4 hover:border-PurplishBlue cursor-pointer " +
-        (watch().plan === name ||
-        (watch().plan === undefined && name === "Arcade")
+        (getValues().plan === name ||
+        (getValues().plan === undefined && name === "Arcade")
           ? " bg-Magnolia border-PurplishBlue"
           : " border-LightGray")
       }
@@ -40,7 +40,7 @@ const Plan = ({ icon, name, price, field, watch }: PlanProps) => {
       <div>
         <h3 className="font-[500] text-MarineBlue">{name}</h3>
         <p>{price}</p>
-        {watch().period === "yearly" ? (
+        {getValues().period === "yearly" ? (
           <p className="text-MarineBlue text-xs">2 months free</p>
         ) : (
           ""
@@ -50,7 +50,13 @@ const Plan = ({ icon, name, price, field, watch }: PlanProps) => {
   );
 };
 
-const SelectPlan = ({ period, control, register, watch }: SelectPlanProps) => {
+const SelectPlan = ({
+  period,
+  control,
+  register,
+  getValues,
+  watch,
+}: SelectPlanProps) => {
   return (
     <div className="flex flex-col gap-4 h-full justify-between">
       <MainNav actual="select plan" />
@@ -72,13 +78,14 @@ const SelectPlan = ({ period, control, register, watch }: SelectPlanProps) => {
                   icon="/icon-arcade.svg"
                   name="Arcade"
                   price={
-                    watch().period === undefined || watch().period === "monthly"
+                    getValues().period === undefined ||
+                    getValues().period === "monthly"
                       ? "$9/mo"
                       : "$90/yr"
                   }
                   register={register}
                   control={control}
-                  watch={watch}
+                  getValues={getValues}
                 />
               </div>
             )}
@@ -94,13 +101,14 @@ const SelectPlan = ({ period, control, register, watch }: SelectPlanProps) => {
                   icon="/icon-advanced.svg"
                   name="Advanced"
                   price={
-                    watch().period === undefined || watch().period === "monthly"
+                    getValues().period === undefined ||
+                    getValues().period === "monthly"
                       ? "$12/mo"
                       : "$120/yr"
                   }
                   register={register}
                   control={control}
-                  watch={watch}
+                  getValues={getValues}
                 />
               </div>
             )}
@@ -116,13 +124,14 @@ const SelectPlan = ({ period, control, register, watch }: SelectPlanProps) => {
                   icon="/icon-pro.svg"
                   name="Pro"
                   price={
-                    watch().period === undefined || watch().period === "monthly"
+                    getValues().period === undefined ||
+                    getValues().period === "monthly"
                       ? "$15/mo"
                       : "$150/yr"
                   }
                   register={register}
                   control={control}
-                  watch={watch}
+                  getValues={getValues}
                 />
               </div>
             )}
@@ -131,8 +140,10 @@ const SelectPlan = ({ period, control, register, watch }: SelectPlanProps) => {
         <div className="flex justify-center gap-6 w-full bg-Alabaster rounded-lg p-4">
           <div
             className={
-              "text-CoolGray font-[500] " +
-              (watch().period === "monthly" && " text-MarineBlue")
+              " font-[500] " +
+              (getValues().period === "monthly" || !getValues().period
+                ? " text-MarineBlue"
+                : " text-CoolGray")
             }
           >
             Monthly
@@ -169,7 +180,7 @@ const SelectPlan = ({ period, control, register, watch }: SelectPlanProps) => {
           <div
             className={
               "text-CoolGray font-[500] " +
-              (watch().period == "yearly" && " text-MarineBlue")
+              (getValues().period == "yearly" && " text-MarineBlue")
             }
           >
             Yearly
