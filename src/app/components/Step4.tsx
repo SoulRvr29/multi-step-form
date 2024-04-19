@@ -7,6 +7,21 @@ type SummaryProps = {
 };
 
 const Summary = ({ getValues, setValue }: SummaryProps) => {
+  const addonsPrices = {
+    "Online service": {
+      monthly: "+$1/mo",
+      yearly: "+$10/yr",
+    },
+    "Larger storage": {
+      monthly: "+$2/mo",
+      yearly: "+$20/yr",
+    },
+    "Customizable profile": {
+      monthly: "+$2/mo",
+      yearly: "+$20/yr",
+    },
+  };
+  const period: "monthly" | "yearly" = getValues().period;
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="summary" />
@@ -16,17 +31,12 @@ const Summary = ({ getValues, setValue }: SummaryProps) => {
         <div className="bg-Alabaster rounded-lg p-4 mt-8">
           <div className="flex justify-between">
             <p className="text-MarineBlue font-bold capitalize">
-              {getValues().plan} ({getValues().period})
+              {getValues().plan.name} ({getValues().period})
             </p>
             <div className="text-MarineBlue font-bold">
-              {getValues().plan === "Arcade" && getValues().period === "monthly"
-                ? "$9/mo"
-                : getValues().plan === "Arcade" &&
-                  getValues().period === "yearly"
-                ? "$90/mo"
-                : getValues().plan === "Advanced"
-                ? "$12/mo"
-                : "$15/mo"}
+              {getValues().period === "monthly"
+                ? `$${getValues().plan.prices.monthly}/mo`
+                : `$${getValues().plan.prices.yearly}/yr`}
             </div>
           </div>
           <button
@@ -44,25 +54,35 @@ const Summary = ({ getValues, setValue }: SummaryProps) => {
           {getValues()["Online service"] && (
             <div className="flex justify-between mb-4 text-CoolGray">
               <div>Online service</div>
-              <div className="text-MarineBlue">+$1/mo</div>
+              <div className="text-MarineBlue">
+                {addonsPrices["Online service"][period]}
+              </div>
             </div>
           )}
           {getValues()["Larger storage"] && (
             <div className="flex justify-between mb-4 text-CoolGray">
               <div>Larger storage</div>
-              <div className="text-MarineBlue">+$2/mo</div>
+              <div className="text-MarineBlue">
+                {addonsPrices["Larger storage"][period]}
+              </div>
             </div>
           )}
           {getValues()["Customizable profile"] && (
             <div className="flex justify-between text-CoolGray">
               <div>Customizable profile</div>
-              <div className="text-MarineBlue">+$2/mo</div>
+              <div className="text-MarineBlue">
+                {addonsPrices["Customizable profile"][period]}
+              </div>
             </div>
           )}
         </div>
         <div className="flex justify-between text-CoolGray p-4">
           <div>Total (per month)</div>
-          <div className="text-PurplishBlue font-bold">+$12/mo</div>
+          <div className="text-PurplishBlue font-bold">
+            {getValues().period === "monthly"
+              ? `$${getValues().plan.prices.monthly}/mo`
+              : `$${getValues().plan.prices.yearly}/yr`}
+          </div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import MainNav from "./MainNav";
 type AddonsLiProps = {
   name: string;
   desc: string;
-  price: string;
+  prices: any;
   register: any;
   getValues: any;
 };
@@ -17,7 +17,7 @@ type AddonsProps = {
 const AddonsLi = ({
   name,
   desc,
-  price,
+  prices,
   register,
   getValues,
 }: AddonsLiProps) => {
@@ -40,7 +40,11 @@ const AddonsLi = ({
           <h3 className="text-MarineBlue font-bold">{name}</h3>{" "}
           <p className="max-md:text-xs">{desc}</p>
         </div>
-        <div className="text-PurplishBlue ">{price}</div>
+        <div className="text-PurplishBlue ">
+          {getValues().period === "monthly"
+            ? `+$${prices.monthly}/mo`
+            : `+$${prices.yearly}/yr`}
+        </div>
       </div>
     </li>
   );
@@ -61,21 +65,21 @@ const Addons = ({ register, getValues }: AddonsProps) => {
             register={register}
             name="Online service"
             desc="Access to multiplayer games"
-            price={getValues().period === "monthly" ? "+$1/mo" : "+$10/mo"}
+            prices={{ monthly: 1, yearly: 10 }}
           />
           <AddonsLi
             getValues={getValues}
             register={register}
             name="Larger storage"
             desc="Extra 1TB of cloud save"
-            price={getValues().period === "monthly" ? "+$2/mo" : "+$20/mo"}
+            prices={{ monthly: 2, yearly: 20 }}
           />
           <AddonsLi
             getValues={getValues}
             register={register}
             name="Customizable profile"
             desc="Custom theme on your profile"
-            price={getValues().period === "monthly" ? "+$2/mo" : "+$20/mo"}
+            prices={{ monthly: 2, yearly: 20 }}
           />
         </div>
       </div>

@@ -14,7 +14,7 @@ type SelectPlanProps = {
 type PlanProps = {
   icon: any;
   name: string;
-  price: string;
+  prices: any;
   period?: string;
   field: any;
   register: any;
@@ -22,16 +22,16 @@ type PlanProps = {
   getValues: any;
 };
 
-const Plan = ({ icon, name, price, field, getValues }: PlanProps) => {
+const Plan = ({ icon, name, field, getValues, prices }: PlanProps) => {
   return (
     <div
       onClick={() => {
-        field.onChange(name);
+        field.onChange({ name: name, prices });
       }}
       className={
         "flex flex-col max-md:flex-row max-md:justify-start max-md:gap-4 justify-between gap-10  border  rounded-md p-4 hover:border-PurplishBlue cursor-pointer " +
-        (getValues().plan === name ||
-        (getValues().plan === undefined && name === "Arcade")
+        ((getValues().plan && getValues().plan.name) === name ||
+        (!getValues().plan && name === "Arcade")
           ? " bg-Magnolia border-PurplishBlue"
           : " border-LightGray")
       }
@@ -39,7 +39,12 @@ const Plan = ({ icon, name, price, field, getValues }: PlanProps) => {
       <Image src={icon} width={40} height={40} alt={name} />
       <div>
         <h3 className="font-[500] text-MarineBlue">{name}</h3>
-        <p>{price}</p>
+        <p>
+          {!prices[getValues().period] ||
+          prices[getValues().period] === "monthly"
+            ? `$${prices.monthly}/mo`
+            : `$${prices.yearly}/yr`}
+        </p>
         {getValues().period === "yearly" ? (
           <p className="text-MarineBlue text-xs">2 months free</p>
         ) : (
@@ -69,20 +74,23 @@ const SelectPlan = ({
           <Controller
             name="plan"
             control={control}
-            defaultValue="Arcade"
+            defaultValue={{
+              name: "Arcade",
+              prices: {
+                monthly: 9,
+                yearly: 90,
+              },
+            }}
             render={({ field }) => (
               <div className="grid">
                 <Plan
                   field={field}
-                  period={period}
                   icon="/icon-arcade.svg"
                   name="Arcade"
-                  price={
-                    getValues().period === undefined ||
-                    getValues().period === "monthly"
-                      ? "$9/mo"
-                      : "$90/yr"
-                  }
+                  prices={{
+                    monthly: 9,
+                    yearly: 90,
+                  }}
                   register={register}
                   control={control}
                   getValues={getValues}
@@ -93,19 +101,23 @@ const SelectPlan = ({
           <Controller
             name="plan"
             control={control}
+            defaultValue={{
+              name: "Advanced",
+              prices: {
+                monthly: 12,
+                yearly: 120,
+              },
+            }}
             render={({ field }) => (
               <div className="grid">
                 <Plan
                   field={field}
-                  period={period}
                   icon="/icon-advanced.svg"
                   name="Advanced"
-                  price={
-                    getValues().period === undefined ||
-                    getValues().period === "monthly"
-                      ? "$12/mo"
-                      : "$120/yr"
-                  }
+                  prices={{
+                    monthly: 12,
+                    yearly: 120,
+                  }}
                   register={register}
                   control={control}
                   getValues={getValues}
@@ -116,19 +128,23 @@ const SelectPlan = ({
           <Controller
             name="plan"
             control={control}
+            defaultValue={{
+              name: "Pro",
+              prices: {
+                monthly: 15,
+                yearly: 150,
+              },
+            }}
             render={({ field }) => (
               <div className="grid">
                 <Plan
                   field={field}
-                  period={period}
                   icon="/icon-pro.svg"
                   name="Pro"
-                  price={
-                    getValues().period === undefined ||
-                    getValues().period === "monthly"
-                      ? "$15/mo"
-                      : "$150/yr"
-                  }
+                  prices={{
+                    monthly: 15,
+                    yearly: 150,
+                  }}
                   register={register}
                   control={control}
                   getValues={getValues}
@@ -159,6 +175,7 @@ const SelectPlan = ({
                     field.onChange(
                       e.target.value === "0" ? "monthly" : "yearly"
                     );
+                    console.log(getValues().plan, getValues().plan.name);
                   }}
                   className="bg-MarineBlue appearance-none w-10 rounded-full p-1 accent-Magnolia cursor-pointer"
                   type="range"
