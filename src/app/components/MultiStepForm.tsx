@@ -27,7 +27,7 @@ const MultiStepForm = () => {
     router.push("/complete");
   };
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const router = useRouter();
 
   return (
@@ -41,7 +41,14 @@ const MultiStepForm = () => {
           getValues={getValues}
         />
       )}
-      {step === 3 && <Step3 register={register} getValues={getValues} />}
+      {step === 3 && (
+        <Step3
+          register={register}
+          watch={watch}
+          getValues={getValues}
+          setValue={setValue}
+        />
+      )}
       {step === 4 && <Step4 getValues={getValues} setValue={setValue} />}
       <div
         className={
