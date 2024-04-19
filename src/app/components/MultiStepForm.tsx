@@ -27,7 +27,7 @@ const MultiStepForm = () => {
     router.push("/complete");
   };
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const router = useRouter();
 
   return (

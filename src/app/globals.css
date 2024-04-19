@@ -33,3 +33,18 @@ label,
 label {
   font-weight: 500;
 }
+
+.complete {
+  animation: zoom-in 1s forwards;
+}
+
+@keyframes zoom-in {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}

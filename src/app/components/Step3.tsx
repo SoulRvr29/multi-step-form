@@ -51,7 +51,6 @@ const AddonsLi = ({
               )
             );
           }
-          console.log(getValues());
         }}
         className="size-5 border-LightGray accent-PurplishBlue  cursor-pointer"
         type="checkbox"

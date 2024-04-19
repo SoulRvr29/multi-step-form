@@ -40,7 +40,7 @@ export default function RootLayout({
                 alt="background"
               />
             </div>
-            <div className="mt-10 max-md:m-2 mb-4 w-full flex flex-col mx-auto justify-between max-w-md">
+            <div className="mt-6 max-md:m-2 mb-4 w-full flex flex-col mx-auto justify-between max-w-md">
               {children}
             </div>
           </div>

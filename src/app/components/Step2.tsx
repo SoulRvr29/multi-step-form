@@ -175,7 +175,6 @@ const SelectPlan = ({
                     field.onChange(
                       e.target.value === "0" ? "monthly" : "yearly"
                     );
-                    console.log(getValues().plan, getValues().plan.name);
                   }}
                   className="bg-MarineBlue appearance-none w-10 rounded-full p-1 accent-Magnolia cursor-pointer"
                   type="range"

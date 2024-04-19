@@ -7,21 +7,6 @@ type SummaryProps = {
 };
 
 const Summary = ({ getValues, setValue }: SummaryProps) => {
-  const addonsPrices = {
-    "Online service": {
-      monthly: 1,
-      yearly: 10,
-    },
-    "Larger storage": {
-      monthly: 2,
-      yearly: 20,
-    },
-    "Customizable profile": {
-      monthly: 2,
-      yearly: 20,
-    },
-  };
-
   let addonsSum = 0;
   if (getValues("Online service")) addonsSum += 1;
   if (getValues("Larger storage")) addonsSum += 2;
@@ -34,7 +19,14 @@ const Summary = ({ getValues, setValue }: SummaryProps) => {
       <div>
         <h1 className="max-md:text-2xl">Finishing up</h1>
         <p>Double-check everything looks OK before confirming.</p>
-        <div className="bg-Alabaster rounded-lg p-4 mt-8">
+        <div className="bg-Alabaster rounded-lg p-4 mt-4">
+          <div className="text-xs">
+            <h2 className="text-CoolGray font-bold text-base">Personal info</h2>
+            <p>{getValues("name")}</p>
+            <p>{getValues("email")}</p>
+            <p>{getValues("phone")}</p>
+          </div>
+          <hr className="my-4" />
           <div className="flex justify-between">
             <p className="text-MarineBlue font-bold capitalize">
               {getValues().plan.name} ({getValues().period})
@@ -56,7 +48,7 @@ const Summary = ({ getValues, setValue }: SummaryProps) => {
           >
             Change
           </button>
-          <hr className="my-4" />
+          {getValues("addons") && <hr className="my-4" />}
           {getValues()["Online service"] && (
             <div className="flex justify-between mb-4 text-CoolGray">
               <div>Online service</div>
