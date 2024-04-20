@@ -4,9 +4,7 @@ import Confetti from "../components/ConfettiComponent";
 const Complete = () => {
   return (
     <>
-      <div className="relative">
-        <Confetti />
-      </div>
+      <Confetti />
       <MainNav actual="summary" />
       <div className="grid place-content-center h-full  gap-4 max-md:my-10 ">
         <svg

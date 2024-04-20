@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 
 const ConfettiComponent = () => {
+  const { width, height } = useWindowSize();
   const [confettiActive, setConfettiActive] = useState(true);
   setTimeout(() => {
     setConfettiActive(false);
