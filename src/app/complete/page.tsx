@@ -1,5 +1,5 @@
 import MainNav from "../components/MainNav";
-import Confetti from "../components/Confetti";
+import Confetti from "../components/ConfettiComponent";
 
 const Complete = () => {
   return (
