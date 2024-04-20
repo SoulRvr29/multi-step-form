@@ -34,17 +34,34 @@ label {
   font-weight: 500;
 }
 
-.complete {
-  animation: zoom-in 1s forwards;
+.complete-caption {
+  opacity: 0;
+  animation: zoom-in 1s 1s forwards;
 }
 
 @keyframes zoom-in {
   from {
-    scale: 0;
+    transform: translateY(20px);
     opacity: 0;
   }
   to {
-    scale: 1;
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.complete-icon {
+  animation: icon-anim 1s forwards;
+  z-index: 2;
+}
+
+@keyframes icon-anim {
+  from {
+    transform: scale(3) rotate(-45deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
     opacity: 1;
   }
 }

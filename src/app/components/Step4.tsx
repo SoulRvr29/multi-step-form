@@ -44,7 +44,7 @@ const Summary = ({ getValues, setValue }: SummaryProps) => {
                 ? setValue("period", "yearly")
                 : setValue("period", "monthly");
             }}
-            className="underline text-CoolGray"
+            className="underline text-CoolGray hover:text-PurplishBlue"
           >
             Change
           </button>
@@ -73,17 +73,6 @@ const Summary = ({ getValues, setValue }: SummaryProps) => {
               </div>
             </div>
           )}
-          {/* {getValues("addons") &&
-            Object.entries(getValues("addons")).map(([key, value]) => (
-              <div className="flex justify-between mb-4 text-CoolGray">
-                <div>{key}</div>
-                <div className="text-MarineBlue">
-                  {getValues("period") === "monthly"
-                    ? `+${getValues("addons")[key].monthly}/mo`
-                    : `+${getValues("addons")[key].yearly}/yr`}
-                </div>
-              </div>
-            ))} */}
         </div>
         <div className="flex justify-between text-CoolGray p-4">
           <div>Total (per month)</div>

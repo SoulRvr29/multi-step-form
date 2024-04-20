@@ -1,17 +1,20 @@
-import React from "react";
 import MainNav from "../components/MainNav";
+import Confetti from "../components/Confetti";
 
 const Complete = () => {
   return (
     <>
+      <div className="relative">
+        <Confetti />
+      </div>
       <MainNav actual="summary" />
-      <div className="grid place-content-center h-full  gap-4 max-md:my-10 complete">
+      <div className="grid place-content-center h-full  gap-4 max-md:my-10 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="80"
           height="80"
           viewBox="0 0 80 80"
-          className="mx-auto max-md:size-14"
+          className="mx-auto max-md:size-14 complete-icon"
         >
           <g fill="none">
             <circle cx="40" cy="40" r="40" fill="#F9818E" />
@@ -25,7 +28,7 @@ const Complete = () => {
             />
           </g>
         </svg>
-        <div className="text-center ">
+        <div className="text-center complete-caption">
           <h1 className="mb-4 max-md:text-2xl">Thank you!</h1>
           <p>
             Thanks for confirming your subscription! We hope you have fun using

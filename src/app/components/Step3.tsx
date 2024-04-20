@@ -57,12 +57,12 @@ const AddonsLi = ({
         name={name}
         id={name}
       />
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-full items-center">
         <div className="justify-self-start">
           <h3 className="text-MarineBlue font-bold">{name}</h3>{" "}
           <p className="max-md:text-xs">{desc}</p>
         </div>
-        <div className="text-PurplishBlue ">
+        <div className="text-PurplishBlue max-md:text-xs">
           {getValues().period === "monthly"
             ? `+$${prices.monthly}/mo`
             : `+$${prices.yearly}/yr`}
@@ -81,7 +81,7 @@ const Addons = ({ register, getValues, setValue, watch }: AddonsProps) => {
           <h1 className="max-md:text-2xl">Pick add-ons</h1>
           <p>Add-ons help enhance your gaming experience.</p>
         </div>
-        <div className="flex flex-col gap-4 font-[500]">
+        <div className="flex flex-col gap-4 font-[500] max-md:text-[0.95rem]">
           <AddonsLi
             watch={watch}
             setValue={setValue}

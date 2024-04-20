@@ -40,8 +40,7 @@ const Plan = ({ icon, name, field, getValues, prices }: PlanProps) => {
       <div>
         <h3 className="font-[500] text-MarineBlue">{name}</h3>
         <p>
-          {!prices[getValues().period] ||
-          prices[getValues().period] === "monthly"
+          {!getValues().period || getValues().period === "monthly"
             ? `$${prices.monthly}/mo`
             : `$${prices.yearly}/yr`}
         </p>
@@ -56,7 +55,6 @@ const Plan = ({ icon, name, field, getValues, prices }: PlanProps) => {
 };
 
 const SelectPlan = ({
-  period,
   control,
   register,
   getValues,
@@ -153,7 +151,7 @@ const SelectPlan = ({
             )}
           />
         </div>
-        <div className="flex justify-center gap-6 w-full bg-Alabaster rounded-lg p-4">
+        <div className="flex justify-center gap-6 w-full bg-Alabaster rounded-lg p-4 max-md:p-3 ">
           <div
             className={
               " font-[500] " +

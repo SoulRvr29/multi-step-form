@@ -31,7 +31,7 @@ const MultiStepForm = () => {
   const router = useRouter();
 
   return (
-    <form className="h-full flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <form className="h-full flex flex-col " onSubmit={handleSubmit(onSubmit)}>
       {step === 1 && <Step1 register={register} errors={errors} />}
       {step === 2 && (
         <Step2
@@ -52,8 +52,8 @@ const MultiStepForm = () => {
       {step === 4 && <Step4 getValues={getValues} setValue={setValue} />}
       <div
         className={
-          "w-full flex items-center " +
-          (step > 1 ? " justify-between" : "justify-end")
+          "w-full flex items-center max-md:mt-6  " +
+          (step > 1 ? " justify-between" : " justify-end")
         }
       >
         {step > 1 && (
@@ -83,7 +83,7 @@ const MultiStepForm = () => {
         )}
         {step === 4 && (
           <button
-            className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
+            className="text-Magnolia bg-PurplishBlue px-6 py-3 rounded-md hover:bg-opacity-80"
             type="submit"
           >
             Confirm
