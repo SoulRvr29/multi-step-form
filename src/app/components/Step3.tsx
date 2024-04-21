@@ -1,22 +1,5 @@
-"use client";
 import React from "react";
 import MainNav from "./MainNav";
-
-type AddonsLiProps = {
-  name: any;
-  desc: string;
-  prices: any;
-  register: any;
-  getValues: any;
-  setValue: any;
-  watch: any;
-};
-type AddonsProps = {
-  register: any;
-  getValues: any;
-  setValue: any;
-  watch: any;
-};
 
 const AddonsLi = ({
   name,
@@ -26,14 +9,12 @@ const AddonsLi = ({
   getValues,
   setValue,
   watch,
-}: AddonsLiProps) => {
+}: any) => {
   return (
     <li
       className={
         "flex gap-4 justify-between items-center border rounded-lg p-4 hover:border-PurplishBlue cursor-pointer max-md:gap-4 " +
-        (watch().addons && watch().addons[name]
-          ? "bg-Alabaster border-PurplishBlue"
-          : "")
+        (watch().addons[name] ? "bg-Alabaster border-PurplishBlue" : "")
       }
     >
       <input
@@ -46,7 +27,7 @@ const AddonsLi = ({
               "addons",
               Object.fromEntries(
                 Object.entries(getValues("addons")).filter(
-                  ([key, value]) => key != name
+                  ([key]) => key != name
                 )
               )
             );
@@ -72,7 +53,7 @@ const AddonsLi = ({
   );
 };
 
-const Addons = ({ register, getValues, setValue, watch }: AddonsProps) => {
+const Addons = ({ register, getValues, setValue, watch }: any) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="add-ons" />

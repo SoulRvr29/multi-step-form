@@ -1,12 +1,30 @@
 "use client";
 import { useState } from "react";
-import { useForm, SubmitHandler, Form, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import { useRouter } from "next/navigation";
 import React from "react";
+
+type FormValues = {
+  "Customizable profile": boolean;
+  "Larger storage": boolean;
+  "Online service": boolean;
+  addons: object;
+  email: string;
+  name: string;
+  phone: string;
+  period: "monthly" | "yearly";
+  plan: {
+    name: string;
+    prices: {
+      monthly: number;
+      yearly: number;
+    };
+  };
+};
 
 const MultiStepForm = () => {
   const {
@@ -18,16 +36,33 @@ const MultiStepForm = () => {
     watch,
     getValues,
     setValue,
-  } = useForm({
+  } = useForm<FormValues>({
     mode: "onChange",
+    defaultValues: {
+      "Customizable profile": false,
+      "Larger storage": false,
+      "Online service": false,
+      addons: {},
+      email: "",
+      name: "",
+      phone: "",
+      period: "monthly",
+      plan: {
+        name: "Arcade",
+        prices: {
+          monthly: 9,
+          yearly: 90,
+        },
+      },
+    },
   });
 
-  const onSubmit = (data: object) => {
-    console.log(data);
+  const onSubmit = () => {
     router.push("/complete");
+    // console.log(getValues());
   };
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const router = useRouter();
 
   return (
@@ -70,10 +105,9 @@ const MultiStepForm = () => {
             className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
             type="button"
             onClick={() => {
-              trigger().then((isValid: any) => {
+              trigger().then((isValid) => {
                 if (isValid) {
                   setStep(step + 1);
-                  console.log(getValues());
                 }
               });
             }}

@@ -1,28 +1,9 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import MainNav from "./MainNav";
 import { Controller } from "react-hook-form";
 
-type SelectPlanProps = {
-  period?: string;
-  control: any;
-  register: any;
-  getValues: any;
-  watch: any;
-};
-type PlanProps = {
-  icon: any;
-  name: string;
-  prices: any;
-  period?: string;
-  field: any;
-  register: any;
-  control: any;
-  getValues: any;
-};
-
-const Plan = ({ icon, name, field, getValues, prices }: PlanProps) => {
+const Plan = ({ icon, name, field, getValues, prices }: any) => {
   return (
     <div
       onClick={() => {
@@ -30,8 +11,7 @@ const Plan = ({ icon, name, field, getValues, prices }: PlanProps) => {
       }}
       className={
         "flex flex-col max-md:flex-row max-md:justify-start max-md:gap-4 justify-between gap-10  border  rounded-md p-4 hover:border-PurplishBlue cursor-pointer " +
-        ((getValues().plan && getValues().plan.name) === name ||
-        (!getValues().plan && name === "Arcade")
+        (getValues().plan.name === name
           ? " bg-Magnolia border-PurplishBlue"
           : " border-LightGray")
       }
@@ -40,7 +20,7 @@ const Plan = ({ icon, name, field, getValues, prices }: PlanProps) => {
       <div>
         <h3 className="font-[500] text-MarineBlue">{name}</h3>
         <p>
-          {!getValues().period || getValues().period === "monthly"
+          {getValues().period === "monthly"
             ? `$${prices.monthly}/mo`
             : `$${prices.yearly}/yr`}
         </p>
@@ -54,12 +34,7 @@ const Plan = ({ icon, name, field, getValues, prices }: PlanProps) => {
   );
 };
 
-const SelectPlan = ({
-  control,
-  register,
-  getValues,
-  watch,
-}: SelectPlanProps) => {
+const SelectPlan = ({ control, register, getValues, watch }: any) => {
   return (
     <div className="flex flex-col gap-4 h-full justify-between">
       <MainNav actual="select plan" />
@@ -155,7 +130,7 @@ const SelectPlan = ({
           <div
             className={
               " font-[500] " +
-              (getValues().period === "monthly" || !getValues().period
+              (getValues().period === "monthly"
                 ? " text-MarineBlue"
                 : " text-CoolGray")
             }
@@ -180,13 +155,7 @@ const SelectPlan = ({
                   id="period"
                   min="0"
                   max="1"
-                  defaultValue={
-                    !watch().period
-                      ? "0"
-                      : watch().period === "monthly"
-                      ? "0"
-                      : "1"
-                  }
+                  defaultValue={watch().period === "monthly" ? "0" : "1"}
                 />
               </div>
             )}

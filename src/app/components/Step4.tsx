@@ -1,18 +1,12 @@
 import React from "react";
 import MainNav from "./MainNav";
 
-type SummaryProps = {
-  getValues: any;
-  setValue: any;
-};
-
-const Summary = ({ getValues, setValue }: SummaryProps) => {
+const Summary = ({ getValues, setValue }: any) => {
   let addonsSum = 0;
   if (getValues("Online service")) addonsSum += 1;
   if (getValues("Larger storage")) addonsSum += 2;
   if (getValues("Customizable profile")) addonsSum += 2;
 
-  const period: "monthly" | "yearly" = getValues().period;
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="summary" />

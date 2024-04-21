@@ -29,7 +29,7 @@ export default function RootLayout({
           height={172}
           alt="background"
         />
-        <div className="p-4 relative ">
+        <div className="p-4 relative mb-10">
           <div className="relative bg-white rounded-xl grid grid-cols-[300px_500px] max-md:grid-cols-1 p-4 max-w-4xl w-full max-md:max-w-lg shadow-xl max-md:-translate-y-16 max-md:p-6 max-md:">
             <div>
               <Image
