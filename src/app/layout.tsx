@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Image from "next/image";
 import { Ubuntu } from "next/font/google";
+import Footer from "./components/Footer";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function RootLayout({
             </div>
           </div>
         </div>
+        <Footer />
       </body>
     </html>
   );

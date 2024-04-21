@@ -14,8 +14,8 @@ const ConfettiComponent = () => {
     <div className="fixed -top-10 left-0 max-md:-top-32 max-md:-left-4">
       <Confetti
         recycle={confettiActive}
-        width={window.innerWidth}
-        height={window.innerHeight}
+        width={width}
+        height={height}
         numberOfPieces={400}
         gravity={0.2}
       />
