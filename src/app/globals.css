@@ -65,3 +65,17 @@ label {
     opacity: 1;
   }
 }
+
+.go-back {
+  animation: go-back-anim 2s 2s forwards;
+  opacity: 0;
+}
+
+@keyframes go-back-anim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

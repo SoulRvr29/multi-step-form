@@ -42,7 +42,9 @@ const Summary = ({ getValues, setValue }: any) => {
           >
             Change
           </button>
-          {getValues("addons") && <hr className="my-4" />}
+          {Object.keys(getValues("addons")).length > 0 && (
+            <hr className="my-4" />
+          )}
           {getValues()["Online service"] && (
             <div className="flex justify-between mb-4 text-CoolGray">
               <div>Online service</div>

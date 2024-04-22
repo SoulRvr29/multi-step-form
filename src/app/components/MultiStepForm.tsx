@@ -118,7 +118,7 @@ const MultiStepForm = () => {
         )}
         {step === 4 && (
           <button
-            className="text-Magnolia bg-PurplishBlue px-6 py-3 rounded-md hover:bg-opacity-80"
+            className="text-Magnolia bg-PurplishBlue px-6 py-3 rounded-md hover:bg-opacity-70"
             type="submit"
           >
             Confirm

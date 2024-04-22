@@ -39,7 +39,7 @@ const SelectPlan = ({ control, register, getValues, setValue, watch }: any) => {
   return (
     <div className="flex flex-col gap-4 h-full justify-between">
       <MainNav actual="select plan" />
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 max-md:gap-4">
         <div>
           <h1 className="max-md:text-2xl">Select your plan</h1>
           <p>You have the option of monthly or yearly billing.</p>

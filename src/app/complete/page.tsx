@@ -1,7 +1,11 @@
+"use client";
+
 import MainNav from "../components/MainNav";
 import Confetti from "../components/ConfettiComponent";
+import { useRouter } from "next/navigation";
 
 const Complete = () => {
+  const router = useRouter();
   return (
     <>
       <Confetti />
@@ -33,6 +37,14 @@ const Complete = () => {
             our platform. If you ever need support, please feel free to email us
             at support@loremgaming.com.
           </p>
+          <button
+            onClick={() => {
+              router.push("/");
+            }}
+            className="go-back mt-6 text-MarineBlue font-[500] hover:text-StrawberryRed"
+          >
+            go back
+          </button>
         </div>
       </div>
     </>

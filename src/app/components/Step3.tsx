@@ -57,7 +57,7 @@ const Addons = ({ register, getValues, setValue, watch }: any) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="add-ons" />
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 max-md:gap-4">
         <div>
           <h1 className="max-md:text-2xl">Pick add-ons</h1>
           <p>Add-ons help enhance your gaming experience.</p>

@@ -29,8 +29,8 @@ export default function RootLayout({
           height={172}
           alt="background"
         />
-        <div className="relative mb-10 w-full flex justify-center mx-4">
-          <div className="relative bg-white rounded-xl grid grid-cols-[3fr_5fr] max-md:grid-cols-1 p-4 gap-4 max-w-4xl w-full max-md:max-w-lg shadow-xl max-md:-translate-y-16 max-md:p-6 max-md:">
+        <div className="relative mb-10 max-md:mb-2 w-full flex justify-center mx-4">
+          <div className="relative bg-white rounded-xl grid grid-cols-[3fr_5fr] max-md:grid-cols-1 p-4 gap-4 max-w-4xl w-full max-md:max-w-lg shadow-xl max-md:-translate-y-16 max-md:p-6 max-md:gap-0">
             <div>
               <Image
                 className="max-md:hidden"
@@ -41,7 +41,7 @@ export default function RootLayout({
                 alt="background"
               />
             </div>
-            <div className="mt-6 max-md:m-2 mb-4 w-full flex flex-col mx-auto justify-between max-w-md">
+            <div className="mt-6 max-md:m-2 mb-4 w-full flex flex-col mx-auto justify-between max-w-md max-md:mx-0">
               {children}
             </div>
           </div>

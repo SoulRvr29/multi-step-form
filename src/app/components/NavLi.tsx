@@ -19,7 +19,7 @@ const NavLi = ({ actual, step, type }: NavLiProps) => {
       </div>
 
       <div className="max-md:hidden">
-        <h2 className="uppercase  text-CoolGray">step {step}</h2>
+        <h2 className="uppercase font-[400] text-PastelBlue">step {step}</h2>
         <p className="uppercase text-white font-[500]">{type}</p>
       </div>
     </div>
