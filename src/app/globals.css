@@ -52,7 +52,7 @@ label {
 
 .complete-icon {
   animation: icon-anim 1s forwards;
-  z-index: 2;
+  z-index: 1;
 }
 
 @keyframes icon-anim {

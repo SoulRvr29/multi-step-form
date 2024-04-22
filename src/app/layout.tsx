@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={ubuntu.className}>
-      <body className="relative bg-Magnolia flex max-md:flex-col justify-center items-center min-h-screen  max-md:justify-start">
+      <body className="relative bg-Magnolia flex max-md:flex-col justify-center items-center min-h-screen max-md:justify-start">
         <Image
           className="max-md:block hidden mx-auto "
           src="/bg-sidebar-mobile.svg"
@@ -29,8 +29,8 @@ export default function RootLayout({
           height={172}
           alt="background"
         />
-        <div className="p-4 relative mb-10">
-          <div className="relative bg-white rounded-xl grid grid-cols-[300px_500px] max-md:grid-cols-1 p-4 max-w-4xl w-full max-md:max-w-lg shadow-xl max-md:-translate-y-16 max-md:p-6 max-md:">
+        <div className="relative mb-10 w-full flex justify-center mx-4">
+          <div className="relative bg-white rounded-xl grid grid-cols-[3fr_5fr] max-md:grid-cols-1 p-4 gap-4 max-w-4xl w-full max-md:max-w-lg shadow-xl max-md:-translate-y-16 max-md:p-6 max-md:">
             <div>
               <Image
                 className="max-md:hidden"

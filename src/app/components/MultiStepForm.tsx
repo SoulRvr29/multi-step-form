@@ -74,6 +74,7 @@ const MultiStepForm = () => {
           register={register}
           watch={watch}
           getValues={getValues}
+          setValue={setValue}
         />
       )}
       {step === 3 && (

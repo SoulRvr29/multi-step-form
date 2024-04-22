@@ -11,7 +11,7 @@ const ConfettiComponent = () => {
     setConfettiActive(false);
   }, 3000);
   return (
-    <div className="fixed -top-10 left-0 max-md:-top-32 max-md:-left-4">
+    <div className="fixed -top-10 left-0 max-md:-top-32 max-md:-left-4 z-20">
       <Confetti
         recycle={confettiActive}
         width={width}

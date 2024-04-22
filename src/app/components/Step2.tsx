@@ -12,8 +12,9 @@ const Plan = ({ icon, name, field, getValues, prices }: any) => {
       className={
         "flex flex-col max-md:flex-row max-md:justify-start max-md:gap-4 justify-between gap-10  border  rounded-md p-4 hover:border-PurplishBlue cursor-pointer " +
         (getValues().plan.name === name
-          ? " bg-Magnolia border-PurplishBlue"
-          : " border-LightGray")
+          ? " bg-Magnolia border-PurplishBlue "
+          : " border-LightGray ") +
+        (getValues().period === "monthly" && " mb-4")
       }
     >
       <Image src={icon} width={40} height={40} alt={name} />
@@ -34,7 +35,7 @@ const Plan = ({ icon, name, field, getValues, prices }: any) => {
   );
 };
 
-const SelectPlan = ({ control, register, getValues, watch }: any) => {
+const SelectPlan = ({ control, register, getValues, setValue, watch }: any) => {
   return (
     <div className="flex flex-col gap-4 h-full justify-between">
       <MainNav actual="select plan" />
@@ -128,8 +129,15 @@ const SelectPlan = ({ control, register, getValues, watch }: any) => {
         </div>
         <div className="flex justify-center gap-6 w-full bg-Alabaster rounded-lg p-4 max-md:p-3 ">
           <div
+            onClick={() => {
+              const periodInput = document.querySelector(
+                ".period-input"
+              ) as HTMLInputElement;
+              periodInput.value = "0";
+              setValue("period", "monthly");
+            }}
             className={
-              " font-[500] " +
+              " font-[500] cursor-pointer " +
               (getValues().period === "monthly"
                 ? " text-MarineBlue"
                 : " text-CoolGray")
@@ -149,7 +157,7 @@ const SelectPlan = ({ control, register, getValues, watch }: any) => {
                       e.target.value === "0" ? "monthly" : "yearly"
                     );
                   }}
-                  className="bg-MarineBlue appearance-none w-10 rounded-full p-1 accent-Magnolia cursor-pointer"
+                  className="period-input bg-MarineBlue appearance-none w-10 rounded-full p-1 accent-Magnolia cursor-pointer"
                   type="range"
                   name="period"
                   id="period"
@@ -161,8 +169,15 @@ const SelectPlan = ({ control, register, getValues, watch }: any) => {
             )}
           />
           <div
+            onClick={() => {
+              const periodInput = document.querySelector(
+                ".period-input"
+              ) as HTMLInputElement;
+              periodInput.value = "1";
+              setValue("period", "yearly");
+            }}
             className={
-              "text-CoolGray font-[500] " +
+              "text-CoolGray font-[500] cursor-pointer " +
               (getValues().period == "yearly" && " text-MarineBlue")
             }
           >
