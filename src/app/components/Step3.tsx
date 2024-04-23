@@ -1,5 +1,6 @@
 import React from "react";
 import MainNav from "./MainNav";
+import { motion } from "framer-motion";
 
 const AddonsLi = ({
   name,
@@ -11,7 +12,10 @@ const AddonsLi = ({
   watch,
 }: any) => {
   return (
-    <li
+    <motion.li
+      initial={{ rotate: 0 }}
+      whileHover={{ rotate: [0, 1, -1, 0] }}
+      transition={{ duration: 0.3 }}
       className={
         "flex gap-4 justify-between items-center border rounded-lg p-4 hover:border-PurplishBlue cursor-pointer max-md:gap-4 " +
         (watch().addons[name] ? "bg-Alabaster border-PurplishBlue" : "")
@@ -49,7 +53,7 @@ const AddonsLi = ({
             : `+$${prices.yearly}/yr`}
         </div>
       </div>
-    </li>
+    </motion.li>
   );
 };
 
@@ -57,11 +61,15 @@ const Addons = ({ register, getValues, setValue, watch }: any) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="add-ons" />
-      <div className="flex flex-col gap-8 max-md:gap-4">
-        <div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex flex-col gap-8 max-md:gap-4"
+      >
+        <motion.div animate={{ x: [-30, 0] }}>
           <h1 className="max-md:text-2xl">Pick add-ons</h1>
           <p>Add-ons help enhance your gaming experience.</p>
-        </div>
+        </motion.div>
         <div className="flex flex-col gap-4 font-[500] max-md:text-[0.95rem]">
           <AddonsLi
             watch={watch}
@@ -91,7 +99,7 @@ const Addons = ({ register, getValues, setValue, watch }: any) => {
             prices={{ monthly: 2, yearly: 20 }}
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

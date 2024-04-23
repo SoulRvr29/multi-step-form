@@ -1,5 +1,6 @@
 import React from "react";
 import MainNav from "./MainNav";
+import { motion } from "framer-motion";
 
 const Summary = ({ getValues, setValue }: any) => {
   let addonsSum = 0;
@@ -10,9 +11,11 @@ const Summary = ({ getValues, setValue }: any) => {
   return (
     <div className="flex flex-col h-full justify-between">
       <MainNav actual="summary" />
-      <div>
-        <h1 className="max-md:text-2xl">Finishing up</h1>
-        <p>Double-check everything looks OK before confirming.</p>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <motion.div animate={{ x: [-30, 0] }}>
+          <h1 className="max-md:text-2xl">Finishing up</h1>
+          <p>Double-check everything looks OK before confirming.</p>
+        </motion.div>
         <div className="bg-Alabaster rounded-lg p-4 mt-4">
           <div className="text-xs">
             <h2 className="text-CoolGray font-bold text-base">Personal info</h2>
@@ -78,7 +81,7 @@ const Summary = ({ getValues, setValue }: any) => {
               : `${getValues().plan.prices.yearly + addonsSum * 10}/yr`}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

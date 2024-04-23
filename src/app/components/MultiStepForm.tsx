@@ -7,6 +7,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { animate, motion } from "framer-motion";
 
 type FormValues = {
   "Customizable profile": boolean;
@@ -102,7 +103,8 @@ const MultiStepForm = () => {
           </button>
         )}
         {step < 4 && (
-          <button
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             className="text-Magnolia bg-MarineBlue px-6 py-3 rounded-md hover:bg-opacity-80"
             type="button"
             onClick={() => {
@@ -114,7 +116,7 @@ const MultiStepForm = () => {
             }}
           >
             Next Step
-          </button>
+          </motion.button>
         )}
         {step === 4 && (
           <button

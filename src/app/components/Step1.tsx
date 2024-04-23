@@ -1,24 +1,34 @@
 import React from "react";
 import MainNav from "./MainNav";
+import { motion } from "framer-motion";
+import { error } from "console";
 
 const PersonalInfo = ({ register, errors }: any) => {
   return (
     <div className="flex flex-col justify-between h-full">
       <MainNav actual="your info" />
-      <div className="flex flex-col gap-6">
-        <div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex flex-col gap-6"
+      >
+        <motion.div animate={{ x: [-30, 0] }}>
           <h1 className="max-md:text-2xl">Personal info</h1>
           <p>Please provide your name, email address, and phone number.</p>
-        </div>
+        </motion.div>
 
         <div>
           <div className="flex justify-between items-center">
             <label className="block text-MarineBlue" htmlFor="name">
               Name
             </label>
-            <p className="error text-StrawberryRed">
+            <motion.p
+              animate={errors.name && { scale: [1, 1.1, 1, 1.1, 1] }}
+              transition={{ duration: 0.6 }}
+              className="error text-StrawberryRed"
+            >
               {errors.name?.message?.toString()}
-            </p>
+            </motion.p>
           </div>
           <input
             {...register("name", {
@@ -43,9 +53,13 @@ const PersonalInfo = ({ register, errors }: any) => {
             <label className="block text-MarineBlue" htmlFor="email">
               Email Address
             </label>
-            <p className="error text-StrawberryRed">
+            <motion.p
+              animate={errors.name && { scale: [1, 1.1, 1, 1.1, 1] }}
+              transition={{ duration: 0.6 }}
+              className="error text-StrawberryRed"
+            >
               {errors.email?.message?.toString()}
-            </p>
+            </motion.p>
           </div>
           <input
             {...register("email", {
@@ -70,9 +84,13 @@ const PersonalInfo = ({ register, errors }: any) => {
             <label className="block text-MarineBlue" htmlFor="phone">
               Phone Number
             </label>
-            <p className="error text-StrawberryRed">
+            <motion.p
+              animate={errors.name && { scale: [1, 1.1, 1, 1.1, 1] }}
+              transition={{ duration: 0.6 }}
+              className="error text-StrawberryRed"
+            >
               {errors.phone?.message?.toString()}
-            </p>
+            </motion.p>
           </div>
           <input
             {...register("phone", {
@@ -97,7 +115,7 @@ const PersonalInfo = ({ register, errors }: any) => {
             placeholder="e.g. 1 234 567 890"
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

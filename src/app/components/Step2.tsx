@@ -2,10 +2,21 @@ import React from "react";
 import Image from "next/image";
 import MainNav from "./MainNav";
 import { Controller } from "react-hook-form";
+import { animate, motion } from "framer-motion";
 
 const Plan = ({ icon, name, field, getValues, prices }: any) => {
   return (
-    <div
+    <motion.div
+      initial={{ rotate: 0 }}
+      whileTap={{ scale: 1 }}
+      whileHover={{
+        scale: 1.05,
+        y: -4,
+        boxShadow: "0 0 10px var(--PastelBlue)",
+        transition: {
+          duration: 0.2,
+        },
+      }}
       onClick={() => {
         field.onChange({ name: name, prices });
       }}
@@ -31,7 +42,7 @@ const Plan = ({ icon, name, field, getValues, prices }: any) => {
           ""
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -39,11 +50,15 @@ const SelectPlan = ({ control, register, getValues, setValue, watch }: any) => {
   return (
     <div className="flex flex-col gap-4 h-full justify-between">
       <MainNav actual="select plan" />
-      <div className="flex flex-col gap-8 max-md:gap-4">
-        <div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex flex-col gap-8 max-md:gap-4"
+      >
+        <motion.div animate={{ x: [-30, 0] }}>
           <h1 className="max-md:text-2xl">Select your plan</h1>
           <p>You have the option of monthly or yearly billing.</p>
-        </div>
+        </motion.div>
         <div className="grid grid-cols-3 gap-4 w-full max-md:grid-cols-1">
           <Controller
             name="plan"
@@ -184,7 +199,7 @@ const SelectPlan = ({ control, register, getValues, setValue, watch }: any) => {
             Yearly
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
